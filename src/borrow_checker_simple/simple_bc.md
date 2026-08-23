@@ -1,0 +1,8 @@
+# Notes:
+1. We have learnt about Box<T> smart pointer in Rust: pointer lies inside of stack frame, Box creates a new pointee inside of heap. 
+2. Ownership transfer:
+``` rs
+let a = Box::new(5);
+let b = a;
+// Ownership of the "5" inside of heap transfered to b. When free is called, it only cleans the "5" once (when b is cleaned).
+```

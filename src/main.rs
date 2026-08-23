@@ -2,11 +2,14 @@ use std::cmp::Ordering;
 use std::io;
 mod first_chap;
 mod var_and_mut;
+mod borrow_checker_simple;
 
 use rand::Rng;
 
 fn main() {
     first_chap::matching_guess();
     // var_and_mut::varMut::shadowing();
+    // var_and_mut::varMut::test_x_case();
+    var_and_mut::varMut::stupid_loop();
 }
 
