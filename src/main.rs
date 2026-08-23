@@ -1,10 +1,12 @@
 use std::cmp::Ordering;
 use std::io;
-mod function_a;
+mod first_chap;
+mod var_and_mut;
 
 use rand::Rng;
 
 fn main() {
-    function_a::matching_guess();
+    first_chap::matching_guess();
+    // var_and_mut::varMut::shadowing();
 }
 
