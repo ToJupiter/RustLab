@@ -7,9 +7,11 @@ mod borrow_checker_simple;
 use rand::Rng;
 
 fn main() {
-    first_chap::matching_guess();
+    // first_chap::matching_guess();
     // var_and_mut::varMut::shadowing();
     // var_and_mut::varMut::test_x_case();
-    var_and_mut::varMut::stupid_loop();
+    // var_and_mut::varMut::stupid_loop();
+    // 
+    borrow_checker_simple::easy::deref_exp();
 }
 
