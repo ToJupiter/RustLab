@@ -12,6 +12,7 @@ fn main() {
     // var_and_mut::varMut::test_x_case();
     // var_and_mut::varMut::stupid_loop();
     // 
-    borrow_checker_simple::easy::deref_exp();
-}
+    // borrow_checker_simple::easy::deref_exp();
+    // borrow_checker_simple::borrow::mutable_ref();
+}   
 
