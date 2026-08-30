@@ -14,5 +14,6 @@ fn main() {
     // 
     // borrow_checker_simple::easy::deref_exp();
     // borrow_checker_simple::borrow::mutable_ref();
+    borrow_checker_simple::fix_unsafe::first_word_as_bytes(&String::from("Hello world"));
 }   
 
