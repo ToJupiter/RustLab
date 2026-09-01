@@ -3,6 +3,7 @@ use std::io;
 mod first_chap;
 mod var_and_mut;
 mod borrow_checker_simple;
+mod struct_enum;
 
 use rand::Rng;
 
@@ -14,6 +15,7 @@ fn main() {
     // 
     // borrow_checker_simple::easy::deref_exp();
     // borrow_checker_simple::borrow::mutable_ref();
-    borrow_checker_simple::fix_unsafe::first_word_as_bytes(&String::from("Hello world"));
+    // borrow_checker_simple::fix_unsafe::first_word_as_bytes(&String::from("Hello world"));
+    struct_enum::define_struct::oxy_ownership();
 }   
 

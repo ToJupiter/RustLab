@@ -9,5 +9,5 @@ rand = "0.8.5"
 [workspace]
 resolver="3"
 members = [
-    "borrow_checker"
+    # "borrow_checker"
 ]
