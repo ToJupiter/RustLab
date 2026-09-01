@@ -7,3 +7,4 @@ This implementation is based on what I learn about Rust programming language ins
 3. Need to understand more about borrow checking - finished 91 out of 681 pages (need review from 85 to 91).
 4. Continue to fix errors with unsafe programs - finished page 101 out of 681 pages.
 5. Complete course on Ownership - finished page 124 out of 681 pages.
+6. Moving to part 7.4 - finished page 187 out of 681 pages.
