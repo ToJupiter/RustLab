@@ -1,7 +1,6 @@
 use std::f32::consts::{FRAC_PI_3, FRAC_PI_4};
 use std::{slice::Iter};
 use std::ops::Range;
-use std::f64::consts::{FRAC_PI_3, FRAC_PI_4};
 
 
 pub fn creating_vector(){
