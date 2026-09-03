@@ -1,6 +1,7 @@
 use std::f32::consts::{FRAC_PI_3, FRAC_PI_4};
 use std::{slice::Iter};
 use std::ops::Range;
+use std::collections::HashMap;
 
 
 pub fn creating_vector(){
@@ -71,4 +72,70 @@ pub fn enum_vector() {
         Coordinates::Oxyz(10.0, 20.0, 30.0),
         Coordinates::Spherical(10.0, FRAC_PI_3, FRAC_PI_4)
     ];
+}
+
+/* String: an instance of vector */
+pub fn string_manipulation() {
+    let mut s = String::new();
+    let example_data = "Rust_lang";
+    let mut s = example_data.to_string();
+
+    s.push_str(" is a good language");
+    s.push(' ');
+
+    let mut s1 = String::from("After rainy days ");
+    let mut s2 = String::from("the sun will rise once again.");
+
+    // fn add(self, s: &str) -> String {
+    let s3 = s;
+    let s4 = s1 + "-" + &s2 + "-" + &s3;
+    println!("s2 and s3: {:?}, {:?} are valid, but s1 lost the perms. The result is s4: {:?}", s2, s3, s4);
+
+    /* Advanced string properties and iteration */
+    let hello_world = String::from("Здравствуйте");
+
+    // this can easily crash
+    let number_3a = &hello_world[0..4];
+
+    println!("Some letter iteration");
+    for c in hello_world.chars() {
+        print!("{:?} ", c);
+    }
+    println!();
+
+    println!("Tuple of idx and char iteration");
+    for ci in hello_world.char_indices() {
+        print!("{:?}", ci);
+    }
+    println!();
+
+    println!("The bytes made up the string");
+    for by in hello_world.bytes() {
+        print!("{} ", by);
+    }
+    println!();
+}
+
+pub fn hashmap_manipulation() {
+    // Homogenous
+    let mut scores = HashMap::new();
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Brown"), 25);
+    scores.insert(String::from("Red"), 20);
+
+    let blue_team = String::from("Blue");
+    let blue_value = scores.get(&blue_team).copied().unwrap_or(0);
+
+    // New insertion
+    scores.entry(String::from("Purple")).or_insert(13);
+
+    // New hashmap with word separator
+    let a_nice_text = "have a nice day have";
+    let mut texthmap: HashMap<String, i32> = HashMap::new();
+    for word in a_nice_text.split_whitespace() {
+        let count = texthmap.entry(word.to_string()).or_insert(0);
+        *count += 1;
+    }
+    
+    
 }

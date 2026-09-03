@@ -20,6 +20,7 @@ fn main() {
     // struct_enum::define_struct::oxy_ownership();
     // 
     // struct_enum::define_enum::us_coins();
-    collections_dtype::vec_str::vector_iter();
+    // collections_dtype::vec_str::vector_iter();
+    collections_dtype::vec_str::string_manipulation();
 }   
 

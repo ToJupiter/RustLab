@@ -9,3 +9,4 @@ This implementation is based on what I learn about Rust programming language ins
 5. Complete course on Ownership - finished page 124 out of 681 pages.
 6. Moving to part 7.4 - finished page 187 out of 681 pages.
 6. Finished the basics of vector - finished page 187 out of 681 pages.
+7. Finished the basics of String & HashMap - finished page 218 out of 681 pages.
