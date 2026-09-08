@@ -5,6 +5,7 @@ mod var_and_mut;
 mod borrow_checker_simple;
 mod struct_enum;
 mod collections_dtype;
+mod error_type_test;
 
 use rand::Rng;
 
@@ -22,5 +23,6 @@ fn main() {
     // struct_enum::define_enum::us_coins();
     // collections_dtype::vec_str::vector_iter();
     collections_dtype::vec_str::string_manipulation();
+    error_type_test::error_handling::file_open();
 }   
 
