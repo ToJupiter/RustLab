@@ -23,6 +23,6 @@ fn main() {
     // struct_enum::define_enum::us_coins();
     // collections_dtype::vec_str::vector_iter();
     collections_dtype::vec_str::string_manipulation();
-    error_type_test::error_handling::file_open();
+    error_type_test::error_handling::file_lifecycle();
 }   
 
