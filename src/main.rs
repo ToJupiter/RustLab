@@ -1,5 +1,5 @@
 use std::cmp::Ordering;
-use std::io;
+use std::{error, io};
 mod first_chap;
 mod var_and_mut;
 mod borrow_checker_simple;
@@ -24,5 +24,6 @@ fn main() {
     // collections_dtype::vec_str::vector_iter();
     collections_dtype::vec_str::string_manipulation();
     error_type_test::error_handling::file_lifecycle();
+    error_type_test::generic_type::vector_largest();
 }   
 

@@ -8,8 +8,14 @@ pub fn vector_largest() {
         }
     }
     println!("The largest number is: {:?}", largest_num);
+
+    // The correct way to do an abstraction
+    let new_number_list = vec![1000, 29, 38, 20];
+    let new_largest = find_largest(&new_number_list);
+    println!("The new way to find the largest value returns {:?}", new_largest);
 }
 
+/* This is an abstraction of the operation to find the largest element in a vector */
 pub fn find_largest(list: &[i32]) -> &i32 {
     let mut largest_num = &list[0];
 
@@ -20,4 +26,5 @@ pub fn find_largest(list: &[i32]) -> &i32 {
     }
     return largest_num;
 }
+
 
