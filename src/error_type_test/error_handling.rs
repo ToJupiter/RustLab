@@ -70,3 +70,9 @@ pub fn file_lifecycle() {
     };
     println!("The removal cleanup process is: {}", hello_rust_remove);
 }
+
+/*
+ * Code => value that do not make sense => return an error. This is for retry, handling, ... and the part in the sense of userspace error plane.
+ * Insecure, harmful => panic! => for developer to fix
+ * Expected failure => Result<T, E>
+ */
