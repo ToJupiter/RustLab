@@ -27,4 +27,42 @@ pub fn find_largest(list: &[i32]) -> &i32 {
     return largest_num;
 }
 
+/*
+ * PartialOrd limits the trait of the generic type T
+ */
+pub fn largest<T: PartialOrd> (list: &[T]) -> &T {
+    let mut largest = &list[0];
 
+    for item in list {
+        if item == largest {
+            largest = item;
+        }
+    }
+
+    largest
+}
+
+struct Point<T> {
+    x: T,
+    y: T
+}
+
+pub fn sample_point() {
+    let integer_impl = Point {x: 5, y: 10};
+    let float_impl = Point {x: 1.0, y: 4.0};
+
+    let p = Point {x: 5, y: 10};
+    println!("p.x = {}", p.x());
+}
+
+impl<T> Point<T> {
+    fn x(&self) -> &T {
+        return &self.x;
+    }
+}
+
+impl Point<f32> {
+    fn distance_to_core(&self) -> f32 {
+        return (self.x.powi(2) + self.x.powi(2)).sqrt();
+    }
+}
