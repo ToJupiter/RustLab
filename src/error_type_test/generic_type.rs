@@ -422,10 +422,10 @@ fn find_nth<T: Ord + Clone>(elems: &[T], n: usize) -> T {
  
  Another option is to leverage the fact that self.curve is cheap to copy and use Option::copied, which would release the borrow on self as soon as .copied() is called.
  */
-pub fn apply_curve(&mut self) {
-    if let Some(curve) = self.curve {
-        for score in self.scores.iter_mut() {
-            *score += curve;
-        }
-    }
-}
+// pub fn apply_curve(&mut self) {
+//     if let Some(curve) = self.curve {
+//         for score in self.scores.iter_mut() {
+//             *score += curve;
+//         }
+//     }
+// }
