@@ -1,4 +1,3 @@
-use core::panic::PanicMessage;
 use std::fmt::{Debug, Display};
 
 pub fn vector_largest() {
