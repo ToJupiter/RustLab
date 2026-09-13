@@ -4,11 +4,11 @@
  * Used for traits
  */
 
-struct User {
-    active: bool,
-    username: String,
-    email: String,
-    sign_in_count: u64
+pub struct User {
+    pub active: bool,
+    pub username: String,
+    pub email: String,
+    pub sign_in_count: u64
 }
 
 pub struct RGBColor(u8, u8, u8);
