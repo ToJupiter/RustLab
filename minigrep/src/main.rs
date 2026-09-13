@@ -1,18 +1,19 @@
-use std::env;
+use std::{env, process};
 
 use minigrep::file_read::read_poem;
+use minigrep::file_read::Config;
+use minigrep::file_read::run_config;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
+    let config = Config::build(&args).unwrap_or_else(|err| {
+        eprintln!("Problem parsing arguments: {err}");
+        process::exit(1);
+    });
 
-    if args.len() < 3 {
-        eprintln!("Usage: {} <query> <file_path>", args[0]);
+    if let Err(e) = run_config(config) {
+        println!("Run config finished with error: {}", e);
         std::process::exit(1);
-    }
-    let query = &args[1];
-    let file_path = &args[2];
-    println!("We are searching for: {}", query);
-    println!("We are looking in file: {}", file_path);
-
-    read_poem(file_path, query);
+    };
 }
+
