@@ -32,5 +32,61 @@ pub fn type_of_closure() {
     // Mutable borrowing
     let mut a_fun_arr_borrow_mut = || println!("The 50 push: {:?}", a_fun_arr.push(50));
 
+    let a_fun_arr_move_completely = thread::spawn(move || println!("From thread: {:?}", a_fun_arr)).join().unwrap();
+}
+
+/*
+ * FnOnce -> fn call(self) -- (consume — may move out, can only be done once)
+ * FnMut -> fn call(&mut self) -- (borrow mutably - may mut, does not move out)
+ * Fn -> fn call(&self) -- (borrow shared, may only read, mutate, not move)
+
+This example will demonstrate how the callers work.
+ */
+
+fn caller_shared_borrow<F: Fn()>(f: &F) { f(); f(); }
+fn caller_shared_borrow_mut<F: FnMut()>(f: &mut F) { f(); f(); }
+fn caller_once_take_ownership<F: FnOnce()>(f: F) { f(); }
+
+pub fn closure_levels() {
+
+    // Greetings!
+    let name = String::from("Alice");
+    let mut greet_closure = || println!("Hello, {}", name);
+    // greet calls: No moving, no mutating value
+    caller_shared_borrow(&greet_closure);
+    caller_shared_borrow_mut(&mut greet_closure);
+    caller_once_take_ownership(greet_closure);
+
+    
+    let mut counter = 0;
+    let mut bump_value = || {counter += 1; println!("Current count: {}", counter)};
+    // counter calls: No moving, YES mutating value. bump_value only implements FnMut, no Fn implementation.
+    // caller_shared_borrow(&bump_value); -- failed because no Fn implementation.
+    caller_shared_borrow_mut(&mut bump_value);
+    caller_once_take_ownership(bump_value);
+
+    let mut rust_string = String::from("Hello Rust lang");
+    let eat_rust_string = move || drop(rust_string);
+
+    // caller_shared_borrow(&eat_rust_string); -- failed because no Fn implementation.
+    // caller_shared_borrow_mut(&mut eat_rust_string);
+    caller_once_take_ownership(eat_rust_string);
+}
+
+pub fn popular_example() {
+
+    // -- This accepts FnOnce - meaning you are free to move, mut or do anything. This is because unwrap_or_else here only handles Some or None. If Some() -> call 0 time, elif None -> call once only. It grants maximum flexibility to unwrap_or_else().
+    let fallback_noti = String::from("Fallback to this String");
+    let x: Option<String> = None;
+    let lets_fallback = x.unwrap_or_else(move || fallback_noti); 
+
+    // -- The map function needs at least FnMut, does not accept FnOnce. 
+    let ai_test_scores: Vec<f64> = vec![5.5, 7.5, 6.5, 5.5, 2.5];
+    let (min_test_score, max_test_score) = (ai_test_scores.iter().copied().reduce(f64::min), ai_test_scores.iter().copied().reduce(f64::max));
+    let (min_test_score_unwrap, max_test_score_unwrap) = (min_test_score.unwrap(), max_test_score.unwrap());
+    let min_max_closure = |x| {x - min_test_score_unwrap / (max_test_score_unwrap - min_test_score_unwrap)};
+    let min_max_normalization: Vec<f64> = ai_test_scores.iter().map(min_max_closure).collect();
+    
     
 }
+
