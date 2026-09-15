@@ -6,6 +6,7 @@ mod borrow_checker_simple;
 mod struct_enum;
 mod collections_dtype;
 mod error_type_test;
+mod functional_pointer;
 
 use rand::Rng;
 
