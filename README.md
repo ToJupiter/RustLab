@@ -12,3 +12,4 @@ This implementation is based on what I learn about Rust programming language ins
 8. Finished the basics of String & HashMap - finished page 218 out of 681 pages.
 9. Finished the generic type and lifetime implementation - finished page 279 out of 681 pages.
 10. Finished the basics and some usage of closures - finished page 362 out of 681 pages.
+11. Finished cargo usage - finished page 400 out of 681 pages.

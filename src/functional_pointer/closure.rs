@@ -10,7 +10,7 @@ pub fn type_of_closure() {
     let add_one_v2 = |x: i32| -> i32 {
         return x + 1;
     };
-    let add_one_v3 = |m| {m + 1};
+    let add_one_v3 = |m| {m as f32 + 1.0};
     let add_one_v4 = |n| n + 1;
 
     let add_one_v3_applied = add_one_v3(10);
