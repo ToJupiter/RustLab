@@ -26,5 +26,6 @@ fn main() {
     collections_dtype::vec_str::string_manipulation();
     error_type_test::error_handling::file_lifecycle();
     error_type_test::generic_type::vector_largest();
+    functional_pointer::smart_pointer::cons_list();
 }   
 
