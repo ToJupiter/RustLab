@@ -27,5 +27,6 @@ fn main() {
     error_type_test::error_handling::file_lifecycle();
     error_type_test::generic_type::vector_largest();
     functional_pointer::smart_pointer::cons_list();
+    functional_pointer::rc_pointer::rc_pointer_test();
 }   
 
