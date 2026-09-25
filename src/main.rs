@@ -7,6 +7,7 @@ mod struct_enum;
 mod collections_dtype;
 mod error_type_test;
 mod functional_pointer;
+mod concurrency_async;
 
 use rand::Rng;
 
@@ -23,10 +24,11 @@ fn main() {
     // 
     // struct_enum::define_enum::us_coins();
     // collections_dtype::vec_str::vector_iter();
-    collections_dtype::vec_str::string_manipulation();
-    error_type_test::error_handling::file_lifecycle();
-    error_type_test::generic_type::vector_largest();
-    functional_pointer::smart_pointer::cons_list();
-    functional_pointer::rc_pointer::rc_pointer_test();
+    // collections_dtype::vec_str::string_manipulation();
+    // error_type_test::error_handling::file_lifecycle();
+    // error_type_test::generic_type::vector_largest();
+    // functional_pointer::smart_pointer::cons_list();
+    // functional_pointer::rc_pointer::rc_pointer_test();
+    concurrency_async::concurrency::thread_spawn();
 }   
 
