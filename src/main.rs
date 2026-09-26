@@ -30,5 +30,6 @@ fn main() {
     // functional_pointer::smart_pointer::cons_list();
     // functional_pointer::rc_pointer::rc_pointer_test();
     concurrency_async::concurrency::thread_spawn();
+    concurrency_async::concurrency::message_passing_channel();
 }   
 
