@@ -11,6 +11,8 @@ mod concurrency_async;
 
 use rand::Rng;
 
+
+
 fn main() {
     // first_chap::matching_guess();
     // var_and_mut::varMut::shadowing();
@@ -31,5 +33,8 @@ fn main() {
     // functional_pointer::rc_pointer::rc_pointer_test();
     concurrency_async::concurrency::thread_spawn();
     concurrency_async::concurrency::message_passing_channel();
+    // trpl::block_on(async { 
+    //     concurrency_async::hello_async::welcome_async::page_title("https://example.com").await;
+    // });
 }   
 

@@ -1,6 +1,8 @@
 use std::thread;
 use std::time::Duration;
 use std::sync::mpsc;
+use std::sync::{Mutex, Arc};
+use std::rc::Rc;
 
 /*
  * Here are the topics we’ll cover in this chapter:
@@ -136,3 +138,31 @@ pub fn message_passing_channel() {
         Err(e) => println!("An error occured: {e}!")
     }
 }
+
+pub fn mutex_control() {
+    let mutex_value = Mutex::new(10);
+    {
+        let mut num = mutex_value.lock().unwrap();
+        *num = 20;
+    }
+    println!("The value inside a Mutex is: {:?}", mutex_value);
+
+    let shared_mutex = Arc::new(Mutex::new(20));
+    let mut handles = vec![];
+
+    for _ in 0..10 {
+        let counter = Arc::clone(&shared_mutex);
+        let handle = thread::spawn(move || {
+           let mut num = counter.lock().unwrap();
+           *num += 1; 
+        });
+        handles.push(handle);
+    }
+
+    for handle in handles {
+        handle.join().unwrap();
+    }
+
+    println!("Result: {}", *shared_mutex.lock().unwrap());
+}
+
