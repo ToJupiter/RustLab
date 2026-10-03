@@ -1,4 +1,4 @@
-use std::time::Duration;
+use std::{thread, time::Duration, vec};
 
 use trpl::{Either, Html, Receiver};
 
@@ -100,9 +100,17 @@ pub fn start_without_async() {
         
     });
 
+}
+
+pub fn calling_async_exec() {
     // Calling async message passing
     trpl::block_on(async_message_passing());
-    
+
+    // Calling async message passing with 2 producers and 1 consumer
+    trpl::block_on(multiple_send_single_recv());
+
+    // Continue execution pipeline
+    trpl::block_on(fix_sync_block());
 }
 
 /* This part needs fixing */
@@ -132,5 +140,95 @@ pub async fn async_message_passing() {
     }
 }
 
+pub async fn multiple_send_single_recv() {
+    let (tx, mut rx) = trpl::channel();
 
+    let tx1 = tx.clone();
+    let tx1_fut = async move {
+        let vals = vec![
+            String::from("hi"),
+            String::from("from"),
+            String::from("rust"),
+            String::from("programming"),
+            String::from("language")
+        ];
+        for val in vals {
+            tx1.send(val).unwrap();
+            trpl::sleep(Duration::from_millis(500)).await;
+        }
+    };
+
+    let rx_fut = async {
+        while let Some(value) = rx.recv().await {
+            println!("Received this value: {}", value);
+        }
+    };
+
+    let tx_fut = async move {
+        let vals = vec![
+            String::from("This"),
+            String::from("is"),
+            String::from("another"),
+            String::from("welcoming"),
+            String::from("message")
+        ];
+
+        for val in vals {
+            tx.send(val).unwrap();
+            trpl::sleep(Duration::from_millis(500)).await;
+        }
+    };
+
+    trpl::join!(tx1_fut, tx_fut, rx_fut);
+}
+
+/* Runtime handling for slow operations inside async block */
+fn slow_operation(name: &str, ms: u64) {
+    thread::sleep(Duration::from_millis(ms));
+    println!("{} slept for {}", name, ms);
+}
+
+async fn fix_sync_block() {
+    let one_ms = Duration::from_millis(1);
+    
+    let a = async {
+        println!("Started a");
+        slow_operation("a", 20);
+        trpl::sleep(one_ms).await;
+        slow_operation("a", 30);
+        trpl::sleep(one_ms).await;
+        slow_operation("a", 50);
+        trpl::sleep(one_ms).await;
+        slow_operation("a", 100);
+        trpl::sleep(one_ms).await;
+    };
+
+    let b = async {
+        println!("Started b");
+        slow_operation("b", 20);
+        trpl::sleep(one_ms).await;
+        slow_operation("b", 30);
+        trpl::sleep(one_ms).await;
+        slow_operation("b", 50);
+        trpl::sleep(one_ms).await;
+        slow_operation("b", 100);
+        trpl::sleep(one_ms).await;
+    };
+
+    trpl::select(a, b).await;
+}
+
+/* Testing timeout for a website crawl for example.
+ * The implementation of trpl::select is not fair: it always polls arguments in the order in which they are passed 
+ */
+async fn timeout<F: Future>(
+    future_to_try: F,
+    max_time: Duration
+) -> Result<F::Output, Duration> {
+    // Prioritize future_to_try over sleep
+    match trpl::select(future_to_try, trpl::sleep(max_time)).await {
+        Either::Left(output) => Ok(output),
+        Either::Right(_) => Err(max_time)
+    }
+}
 

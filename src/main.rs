@@ -36,6 +36,7 @@ fn main() {
     // trpl::block_on(async { 
     //     concurrency_async::hello_async::welcome_async::page_title("https://example.com").await;
     // });
-    concurrency_async::hello_async::welcome_async::start_without_async();
-}   
+    // concurrency_async::hello_async::welcome_async::start_without_async();
+    concurrency_async::hello_async::welcome_async::calling_async_exec();
+}
 
