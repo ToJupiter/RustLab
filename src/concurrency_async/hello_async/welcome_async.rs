@@ -121,6 +121,7 @@ pub async fn async_message_passing() {
     let (tx, mut rx) = trpl::channel::<i32>();
 
     let val: i32 = 10;
+    tx.send(val).unwrap();
     let received = rx.recv().await.unwrap();
     println!("We received {}", received);
     
@@ -138,7 +139,9 @@ pub async fn async_message_passing() {
         trpl::sleep(Duration::from_micros(500)).await;
     }
 
-    while let Some(value) = rx.recv().await {
+    drop(tx2);
+
+    while let Some(value) = rx2.recv().await {
         println!("Received {}", value);
     }
 }
