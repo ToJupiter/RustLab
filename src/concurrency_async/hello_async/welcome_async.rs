@@ -1,6 +1,6 @@
 use std::{thread, time::Duration, vec};
 
-use trpl::{Either, Html, Receiver};
+use trpl::{Either, Html, Receiver, StreamExt};
 
 pub async fn page_title(url: &str) -> (&str, Option<String>) {
     let response = trpl::get(url).await;
@@ -111,6 +111,9 @@ pub fn calling_async_exec() {
 
     // Continue execution pipeline
     trpl::block_on(fix_sync_block());
+
+    // Executing streaming with async and demonstrate the StreamExt trait (upper level of Iterator and Future trait)
+    trpl::block_on(stream_and_iter());
 }
 
 /* This part needs fixing */
@@ -232,3 +235,12 @@ async fn timeout<F: Future>(
     }
 }
 
+pub async fn stream_and_iter() {
+    let values = vec![10;20];
+    let iter = values.iter().map(|n| n * 2);
+    let mut stream = trpl::stream_from_iter(iter);
+
+    while let Some(value) = stream.next().await {
+        println!("The value was {}", value);
+    }
+}
