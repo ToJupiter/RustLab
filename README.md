@@ -13,3 +13,4 @@ This implementation is based on what I learn about Rust programming language ins
 9. Finished the generic type and lifetime implementation - finished page 279 out of 681 pages.
 10. Finished the basics and some usage of closures - finished page 362 out of 681 pages.
 11. Finished cargo usage - finished page 400 out of 681 pages.
+12. Finished patterns and matching in Rust - finished page 568 out of 681 pages.

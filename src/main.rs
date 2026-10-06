@@ -10,6 +10,7 @@ mod functional_pointer;
 mod concurrency_async;
 
 use rand::Rng;
+use rust_lab::pattern_matching;
 
 
 
@@ -31,12 +32,13 @@ fn main() {
     // error_type_test::generic_type::vector_largest();
     // functional_pointer::smart_pointer::cons_list();
     // functional_pointer::rc_pointer::rc_pointer_test();
-    concurrency_async::concurrency::thread_spawn();
-    concurrency_async::concurrency::message_passing_channel();
+    // concurrency_async::concurrency::thread_spawn();
+    // concurrency_async::concurrency::message_passing_channel();
     // trpl::block_on(async { 
     //     concurrency_async::hello_async::welcome_async::page_title("https://example.com").await;
     // });
     // concurrency_async::hello_async::welcome_async::start_without_async();
-    concurrency_async::hello_async::welcome_async::calling_async_exec();
+    // concurrency_async::hello_async::welcome_async::calling_async_exec();
+    pattern_matching::pattern_matching_intro::if_let();
 }
 

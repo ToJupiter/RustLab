@@ -6,3 +6,4 @@ pub mod collections_dtype;
 pub mod error_type_test;
 pub mod concurrency_async;
 pub mod oop;
+pub mod pattern_matching;
