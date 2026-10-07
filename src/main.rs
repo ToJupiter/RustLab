@@ -41,5 +41,7 @@ fn main() {
     // concurrency_async::hello_async::welcome_async::calling_async_exec();
     pattern_matching::pattern_matching_intro::if_let();
     advanced_features::unsafe_rust::raw_pointer();
+    advanced_features::advanced_traits_part_one::associated_types_operator_overloading();
+    advanced_features::advanced_traits_part_two::part_two();
 }
 
