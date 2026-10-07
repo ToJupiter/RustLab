@@ -110,4 +110,38 @@ fn supertrait_demo() {
     let p1 = Point {x: 102, y: 105};
     println!("The point p1 is {}", p1);
     p1.outline_print();
+
+    let local_wrapper = LocalWrapper (vec![String::from("Hello"), String::from("Rust")]);
+    println!("The local wrapper output is: {}", local_wrapper);
+}
+
+/*
+YOUR CRATE                    STD CRATE (or another crate)
+┌──────────────┐              ┌────────────────────────────┐
+│              │              │  trait Display { ... }     │
+│  struct Foo  │              │  struct Vec<T> { ... }     │
+│              │              │  struct String             │
+└──────────────┘              └────────────────────────────┘
+       ▲                                   ▲
+       │                                   │
+       │  local to your crate              │  foreign to your crate
+       └───────────────────────────────────┘
+
+The orphan rule asks: for `impl Trait for Type`,
+is `Trait` local?  is `Type` local?
+
+┌─────────────────────────────┬──────────────────┬──────────────────┐
+│  impl Display for Foo       │  Trait: foreign  │  Type:  local   │ ✅
+│  impl MyTrait for Vec<T>    │  Trait: local    │  Type:  foreign │ ✅
+│  impl Display for Vec<T>    │  Trait: foreign  │  Type:  foreign │ ❌
+└─────────────────────────────┴──────────────────┴──────────────────┘
+
+What if you really want that last line to work?
+ */
+struct LocalWrapper(Vec<String>);
+
+impl fmt::Display for LocalWrapper {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "[{}]", self.0.join(", "))
+    }
 }
