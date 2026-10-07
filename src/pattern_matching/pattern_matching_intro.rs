@@ -62,8 +62,8 @@ pub fn if_let() {
     // Break apart values inside the statement
     let p = Point {x: 10, y: 20};
     let Point {x: a, y: b} = p;
-    assert_eq!(0, a);
-    assert_eq!(7, b);
+    assert_eq!(10, a);
+    assert_eq!(20, b);
 
     // We can use this to check for in the 2D space
     let p2 = Point { x: 0, y: 7 };

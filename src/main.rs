@@ -10,7 +10,7 @@ mod functional_pointer;
 mod concurrency_async;
 
 use rand::Rng;
-use rust_lab::pattern_matching;
+use rust_lab::{advanced_features, pattern_matching};
 
 
 
@@ -40,5 +40,6 @@ fn main() {
     // concurrency_async::hello_async::welcome_async::start_without_async();
     // concurrency_async::hello_async::welcome_async::calling_async_exec();
     pattern_matching::pattern_matching_intro::if_let();
+    advanced_features::unsafe_rust::raw_pointer();
 }
 
