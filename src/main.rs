@@ -43,5 +43,6 @@ fn main() {
     advanced_features::unsafe_rust::raw_pointer();
     advanced_features::advanced_traits_part_one::associated_types_operator_overloading();
     advanced_features::advanced_traits_part_two::part_two();
+    advanced_features::advanced_functions::advanced_functions_and_closures();
 }
 
